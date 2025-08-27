@@ -3,8 +3,8 @@ FROM gitea/act_runner:${VERSION}
 # 安装必要工具
 RUN apk add --no-cache curl tar xz
 # Node.js LTS
-RUN ARCH=$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/') \
- && VERSION=$(curl -s https://nodejs.org/dist/index.tab | awk -F '\t' 'NR>1 && $9 != "-" {print $1; exit}') \
- && curl -fsSLo /tmp/node.tar.xz "https://nodejs.org/dist/${VERSION}/node-${VERSION}-linux-${ARCH}.tar.xz" \
- && tar -xf /tmp/node.tar.xz -C /usr/local --strip-components=1 rm -f /tmp/node.tar.xz
+RUN ARCH="x64" \
+ && LATEST_VERSION=$(curl -s https://nodejs.org/dist/latest/SHASUMS256.txt | grep -o 'node-v[0-9]*\.[0-9]*\.[0-9]*-linux-x64.tar.xz' | head -1) \
+ && curl -fsSLo /tmp/node.tar.xz "https://nodejs.org/dist/latest/${LATEST_VERSION}" \
+ && tar -xf /tmp/node.tar.xz -C /usr/local --strip-components=1 && rm -f /tmp/node.tar.xz
 RUN node -v && npm -v
