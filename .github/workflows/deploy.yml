@@ -6,7 +6,7 @@ on:
       VERSION:
         description: '版本'
         required: false
-        default: 'v0.2.12'
+        default: '0.2.12'
         type: string
       DEPEND:
         description: '依赖'
