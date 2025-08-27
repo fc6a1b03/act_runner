@@ -8,11 +8,6 @@ on:
         required: false
         default: '0.2.12'
         type: string
-      DEPEND_INFO:
-        description: '依赖'
-        required: false
-        default: 'nodejs npm curl tar unzip'
-        type: string
 
 jobs:
   build:
@@ -48,7 +43,6 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             VERSION=${{ inputs.VERSION }}
-            DEPEND_INFO=${{ inputs.DEPEND_INFO }}
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository }}:latest
             ${{ env.REGISTRY }}/${{ github.repository }}:${{ inputs.VERSION }}
