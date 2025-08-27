@@ -3,10 +3,15 @@ name: Build and Publish Docker Image
 on:
   workflow_dispatch:
     inputs:
-      LATEST_VERSION:
-        description: '要构建的版本'
+      VERSION:
+        description: '版本'
         required: false
         default: 'v0.2.12'
+        type: string
+      DEPEND:
+        description: '依赖'
+        required: false
+        default: 'nodejs npm curl tar unzip'
         type: string
 
 jobs:
@@ -36,7 +41,8 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
-            VERSION=${{ inputs.LATEST_VERSION }}
+            DEPEND=${{ inputs.DEPEND }}
+            VERSION=${{ inputs.VERSION }}
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository }}:latest
-            ${{ env.REGISTRY }}/${{ github.repository }}:${{ inputs.LATEST_VERSION }}
+            ${{ env.REGISTRY }}/${{ github.repository }}:${{ inputs.VERSION }}
