@@ -39,6 +39,9 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
+        env:
+          DEPEND: ${{ inputs.DEPEND }}
+          VERSION: ${{ inputs.VERSION }}
         with:
           context: .
           push: true
@@ -47,8 +50,8 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
-            DEPEND=${{ inputs.DEPEND }}
-            VERSION=${{ inputs.VERSION }}
+            DEPEND=${{ env.DEPEND }}
+            VERSION=${{ env.VERSION }}
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository }}:latest
             ${{ env.REGISTRY }}/${{ github.repository }}:${{ inputs.VERSION }}
