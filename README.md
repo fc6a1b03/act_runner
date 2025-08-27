@@ -1,6 +1,6 @@
 # act-runner
 
-本项目提供一个 **极简 Dockerfile**，用于在 **官方 gitea/act_runner 镜像基础上，动态安装额外依赖**（如 Node.js、npm、curl、tar、unzip 等）。  
+本项目提供一个 **极简 Dockerfile**，用于在 **官方 [gitea/act_runner](https://gitea.com/gitea/act_runner) 镜像基础上，动态安装额外依赖**（如 Node.js、npm、curl、tar、unzip 等）。  
 通过 **GitHub Actions 工作流**（或 Gitea Actions）手动触发构建，无需维护复杂脚本，也无需预先打包任何组件。
 
 ---
