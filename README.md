@@ -1,6 +1,6 @@
 # act-runner
 
-> 官方 `[gitea/act_runner](https://gitea.com/gitea/act_runner)` 镜像之上，一键补充常用 CI/CD 依赖的增强版 Runner 镜像  
+> 官方 [gitea/act_runner](https://gitea.com/gitea/act_runner) 镜像之上，一键补充常用 CI/CD 依赖的增强版 Runner 镜像  
 > 直接推送至 GitHub Container Registry（GHCR），开箱即用，支持多架构构建。
 
 ---
