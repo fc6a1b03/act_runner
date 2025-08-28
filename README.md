@@ -83,6 +83,7 @@ services:
       # 构建机可以关闭TLS提升速度
       DOCKER_TLS_CERTDIR: ""
     volumes:
+      # 守护进程配置
       - daemon.json:/etc/docker/daemon.json
     # 必须特权模式
     privileged: true
