@@ -74,8 +74,11 @@ services:
   dind:
     image: docker:dind
     container_name: dind
+    environment:
+      # 构建机可以关闭TLS提升速度
+      DOCKER_TLS_CERTDIR: ""
     # 必须特权模式
     privileged: true
     # 开启Api访问
-    command: ["dockerd", "--host=tcp://0.0.0.0:2375"]
+    command: ["dockerd", "--host=tcp://0.0.0.0:2375 --host=unix:///var/run/docker.sock"]
 ```
