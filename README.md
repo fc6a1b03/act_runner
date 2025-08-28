@@ -82,6 +82,8 @@ services:
     environment:
       # 构建机可以关闭TLS提升速度
       DOCKER_TLS_CERTDIR: ""
+    volumes:
+      - daemon.json:/etc/docker/daemon.json
     # 必须特权模式
     privileged: true
     # 开启Api访问
