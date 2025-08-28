@@ -11,7 +11,7 @@
 
 | 文件 | 作用 |
 |------|------|
-| **Dockerfile** | 基于官方 `gitea/act_runner:<VERSION>` 镜像，通过 Alpine APK 与官方二进制包并行安装：<br>• `docker-cli` `git` `jq` `curl` `wget` `bash` `nodejs` `tar` `xz` `unzip` `zip`<br>• `docker-buildx`（v0.21.0）<br>• `docker-compose`（v2.39.2） |
+| **Dockerfile** | 基于官方 `gitea/act_runner:<VERSION>` 镜像，通过 Alpine APK 与官方二进制包并行安装：<br>• `docker-cli` `git` `jq` `curl` `wget` `bash` `nodejs` `tar` `xz` `unzip` `zip`<br>• `docker-buildx`<br>• `docker-compose` |
 | **.github/workflows/build.yml** | GitHub Actions 工作流<br>• 手动触发（`workflow_dispatch`）<br>• 支持输入自定义 `VERSION`（默认 0.2.12）<br>• 自动登录 GHCR → 构建 → 推送 `latest` 与版本双标签 |
 
 镜像已内置 **Docker Buildx / Compose CLI 插件**，可直接在 Gitea Actions、GitHub Actions 或本地 `act` 环境中使用，无需额外安装。
@@ -23,7 +23,7 @@
 | 类别 | 工具 |
 |------|------|
 | Alpine 包 | docker-cli, git, jq, curl, wget, bash, nodejs, npm, tar, xz, unzip, zip |
-| Docker CLI 插件 | buildx v0.21.0, compose v2.39.2 |
+| Docker CLI 插件 | buildx latest, compose latest |
 
 ---
 
