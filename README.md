@@ -69,6 +69,11 @@ services:
     container_name: runner
     image: ghcr.io/<owner>/<repo>:0.2.12
     environment:
+      # 指向 Gitea 服务置
+      GITEA_INSTANCE_URL: http://gitea
+      GITEA_RUNNER_REGISTRATION_TOKEN: 123
+      GITEA_RUNNER_NAME: runner
+      GITEA_RUNNER_LABELS: linux
       # 指向 DinD 服务
       DOCKER_HOST: "tcp://dind:2375"
   dind:
