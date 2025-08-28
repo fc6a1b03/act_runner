@@ -46,18 +46,35 @@ ghcr.io/<owner>/<repo>:<VERSION>
 
 - docker
 ```bash
-docker run -it --rm --entrypoint /bin/sh -e DOCKER_HOST="tcp://127.0.0.1:2375" ghcr.io/fc6a1b03/act_runner:0.2.12 -c "docker -H \$DOCKER_HOST -v"
+docker run -it --rm --entrypoint /bin/sh -e DOCKER_HOST="tcp://127.0.0.1:2375" ghcr.io/<owner>/<repo>:0.2.12 -c "docker -H \$DOCKER_HOST -v"
 Docker version 28.3.3, build 980b85681696fbd95927fd8ded8f6d91bdca95b0
 ```
 
 - buildx
 ```bash
-docker run -it --rm --entrypoint /bin/sh -e DOCKER_HOST="tcp://127.0.0.1:2375" ghcr.io/fc6a1b03/act_runner:0.2.12 -c "docker -H \$DOCKER_HOST buildx version"
+docker run -it --rm --entrypoint /bin/sh -e DOCKER_HOST="tcp://127.0.0.1:2375" ghcr.io/<owner>/<repo>:0.2.12 -c "docker -H \$DOCKER_HOST buildx version"
 github.com/docker/buildx v0.27.0 bac71def78b077ee6a2607119f88e291861b18ac
 ```
 
 - compose
 ```bash
-docker run -it --rm --entrypoint /bin/sh -e DOCKER_HOST="tcp://127.0.0.1:2375" ghcr.io/fc6a1b03/act_runner:0.2.12 -c "docker -H \$DOCKER_HOST compose version"
+docker run -it --rm --entrypoint /bin/sh -e DOCKER_HOST="tcp://127.0.0.1:2375" ghcr.io/<owner>/<repo>:0.2.12 -c "docker -H \$DOCKER_HOST compose version"
 Docker Compose version v2.39.2
+```
+
+## 🚀 使用案例
+
+```yaml
+services:
+  runner:
+    image: ghcr.io/<owner>/<repo>:0.2.12
+    environment:
+      # 指向 DinD 服务
+      DOCKER_HOST: "tcp://dind:2375"
+  dind:
+    image: docker:dind
+    # 必须特权模式
+    privileged: true
+    # 开启Api访问
+    command: ["dockerd", "--host=tcp://0.0.0.0:2375"]
 ```
