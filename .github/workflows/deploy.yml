@@ -38,6 +38,7 @@ jobs:
           context: .
           push: true
           provenance: false
+          platforms: linux/amd64
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
@@ -45,6 +46,3 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository }}:latest
             ${{ env.REGISTRY }}/${{ github.repository }}:${{ inputs.VERSION }}
-          platforms: |
-            linux/amd64
-            linux/arm64
