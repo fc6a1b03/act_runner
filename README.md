@@ -67,12 +67,14 @@ Docker Compose version v2.39.2
 ```yaml
 services:
   runner:
+    container_name: runner
     image: ghcr.io/<owner>/<repo>:0.2.12
     environment:
       # 指向 DinD 服务
       DOCKER_HOST: "tcp://dind:2375"
   dind:
     image: docker:dind
+    container_name: dind
     # 必须特权模式
     privileged: true
     # 开启Api访问
