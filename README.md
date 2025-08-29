@@ -95,7 +95,7 @@ services:
   "storage-driver": "overlay2",
   "storage-opts": [
      "overlay2.size=100G",
-    "overlay2.override_kernel_check=true"
+     "overlay2.override_kernel_check=true"
   ],
   "features": {
     "buildkit": true
