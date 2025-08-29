@@ -87,6 +87,39 @@ services:
       - daemon.json:/etc/docker/daemon.json
     # 必须特权模式
     privileged: true
-    # 开启Api访问
-    command: ["dockerd", "--host=tcp://0.0.0.0:2375 --host=unix:///var/run/docker.sock"]
+    command: ["dockerd"]
+```
+```json
+{
+  "hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"],
+  "storage-driver": "overlay2",
+  "storage-opts": [
+     "overlay2.size=100G",
+    "overlay2.override_kernel_check=true"
+  ],
+  "features": {
+    "buildkit": true
+  },
+  "builder": {
+    "gc": {
+      "enabled": true,
+      "defaultKeepStorage": "20GB",
+      "policy": [
+        { "all": true, "keepDuration": "24h", "keepStorage": "10GB" },
+        { "unusedFor": "48h" }
+      ]
+    }
+  },
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "60m",
+    "max-file": "3"
+  },
+  "log-level": "warn",
+  "max-concurrent-downloads": 10,
+  "max-concurrent-uploads": 5,
+  "max-download-attempts": 3,
+  "dns": ["8.8.8.8", "8.8.4.4"],
+  "insecure-registries": []
+}
 ```
